@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Галерея фотографий мест в России">
+  <meta name="keywords" content="путешествия, html, css, grid, js">
+  <meta name="author" content="Светлана Рубинштейн">
+  <!--  CSS Styles  -->
+  <link rel="stylesheet" href="./pages/index.css">
+  <script defer src="./pages/index.js"></script>
+  <title>Место. Галерея фотографий мест в России.</title>
+</head>
+<body class="page">
+  <!--  Header  -->
+  <header class="header">
+    <a class="header__link" href="#">
+      <img class="header__logo" src="./images/logo.svg" alt="логотип проекта 'Место'">
+    </a>
+  </header>
+  <!--  Main  -->
+  <main class="main">
+    <!--  Section profile  -->
+    <section class="profile" aria-label="Профиль пользователя">
+      <img class="profile__avatar-image" src="./images/kusto.jpg" alt="Аватар Жака Ива Кусто">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__edit-btn" type="button" aria-label="Редактировать профиль"></button>
+        <p class="profile__description">Исследователь океана</p>
+      </div>
+      <button class="profile__add-btn" type="button" aria-label="Добавить фотографию"></button>
+    </section>
+    <!--  Section elements  -->
+    <section class="elements" aria-label="Галерея фотографий интересных мест в России">
+      <ul class="elements-grid">
+        <li class="element">
+          <img class="element__image" src="images/elements/moscow.jpg" alt="Задержание протестующего в Москве">
+          <div class="element__description">
+            <h2 class="element__title">Москва</h2>
+            <button class="element__like" type="button" aria-label="поставить лайк"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src="./images/elements/cherepovets.jpg" alt="Вид из перехода на ржавые
+              заводские конструкции в Череповце">
+          <div class="element__description">
+            <h2 class="element__title">Череповец</h2>
+            <button class="element__like" type="button" aria-label="поставить лайк"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src="./images/elements/samara.jpg" alt="Полусгнивший знак 'Серп и Молот'">
+          <div class="element__description">
+            <h2 class="element__title">Самара</h2>
+            <button class="element__like" type="button" aria-label="поставить лайк"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src="./images/elements/klin.jpg" alt="Изба на фоне заходящего солнца в Клину">
+          <div class="element__description">
+            <h2 class="element__title">Клин</h2>
+            <button class="element__like" type="button" aria-label="поставить лайк"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src="./images/elements/vyborg.jpg" alt="Вид на темный подъезд пятиэтажки,
+            освещенный фонарем, зимой в Выборге">
+          <div class="element__description">
+            <h2 class="element__title">Выборг</h2>
+            <button class="element__like" type="button" aria-label="поставить лайк"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src="./images/elements/kronshtad.jpg" alt="Колючая проволока в снегу">
+          <div class="element__description">
+            <h2 class="element__title">Кронштад</h2>
+            <button class="element__like" type="button" aria-label="поставить лайк"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <!--  Footer  -->
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+  </footer>
+  <!--  Popup Edit -->
+  <div class="popup" id="popup-edit">
+    <div class="popup__container">
+      <button class="popup__close-btn" type="button"></button>
+      <h2 class="popup__heading">Редактировать профиль</h2>
+      <form class="popup__form" id="profile">
+        <fieldset class="popup__fieldset">
+          <label class="popup__label" for="profile-name">
+            <input class="popup__input" type="text" id="profile-name" placeholder="ФИО" required>
+          </label>
+          <label class="popup__label" for="profile-description">
+            <input class="popup__input" type="text" id="profile-description" placeholder="Профессия" required>
+          </label>
+        </fieldset>
+        <button class="popup__save-btn" type="submit" aria-label="Сохранить изменения в профиле">Сохранить</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
