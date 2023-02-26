@@ -2,7 +2,7 @@
   width: 24px;
   height: 24px;
   border: none;
-  margin-bottom: 7px;
+  margin-bottom: 2px;
   background: url("../../../images/edit-icon.svg") no-repeat center center/cover;
   grid-area: button;
   transition: 0.5s;

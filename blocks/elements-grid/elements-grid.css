@@ -8,9 +8,3 @@
   justify-items: stretch;
   margin: 0 auto;
 }
-
-@media screen and (max-width: 979px) {
-  .elements-grid {
-    margin: 0 auto;
-  }
-}

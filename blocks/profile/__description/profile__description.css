@@ -12,5 +12,6 @@
   .profile__description {
     font-size: 14px;
     line-height: 17px;
+    margin-bottom: -5px;
   }
 }
