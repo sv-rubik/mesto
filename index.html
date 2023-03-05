@@ -34,50 +34,6 @@
     <!--  Section elements  -->
     <section class="elements" aria-label="Галерея фотографий интересных мест в России">
       <ul class="elements-grid">
-        <li class="element">
-          <img class="element__image" src="images/elements/moscow.jpg" alt="Задержание протестующего в Москве">
-          <div class="element__description">
-            <h2 class="element__title">Москва</h2>
-            <button class="element__like" type="button" aria-label="поставить лайк"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/cherepovets.jpg" alt="Вид из перехода на ржавые
-              заводские конструкции в Череповце">
-          <div class="element__description">
-            <h2 class="element__title">Череповец</h2>
-            <button class="element__like" type="button" aria-label="поставить лайк"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/samara.jpg" alt="Полусгнивший знак 'Серп и Молот'">
-          <div class="element__description">
-            <h2 class="element__title">Самара</h2>
-            <button class="element__like" type="button" aria-label="поставить лайк"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/klin.jpg" alt="Изба на фоне заходящего солнца в Клину">
-          <div class="element__description">
-            <h2 class="element__title">Клин</h2>
-            <button class="element__like" type="button" aria-label="поставить лайк"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/vyborg.jpg" alt="Вид на темный подъезд пятиэтажки,
-            освещенный фонарем, зимой в Выборге">
-          <div class="element__description">
-            <h2 class="element__title">Выборг</h2>
-            <button class="element__like" type="button" aria-label="поставить лайк"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/kronshtad.jpg" alt="Колючая проволока в снегу">
-          <div class="element__description">
-            <h2 class="element__title">Кронштад</h2>
-            <button class="element__like" type="button" aria-label="поставить лайк"></button>
-          </div>
-        </li>
       </ul>
     </section>
   </main>
@@ -103,7 +59,6 @@
       </form>
     </div>
   </div>
-
   <!--  Project work 5 -->
   <!--  Popup Add -->
   <div class="popup" id="popup-add">
@@ -123,5 +78,24 @@
       </form>
     </div>
   </div>
+  <!--  Popup Image -->
+  <div class="popup" id="popup-image">
+    <div class="popup__container-image">
+      <img class="popup__image" src="" alt="">
+      <p class="popup__image-caption"></p>
+      <button class="popup__close-btn" type="button"></button>
+    </div>
+  </div>
+  <!--  Template -->
+  <template id="card-template">
+    <li class="element">
+      <img class="element__image" src="" alt="">
+      <button class="element__trash" type="button" aria-label="удалить фотографию"></button>
+      <div class="element__description">
+        <h2 class="element__title"></h2>
+        <button class="element__like" type="button" aria-label="поставить лайк"></button>
+      </div>
+    </li>
+  </template>
 </body>
 </html>
