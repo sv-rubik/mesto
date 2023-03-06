@@ -1,17 +1,16 @@
 // Variables
 const btnEdit = document.querySelector('.profile__edit-btn')
-const popupEdit = document.getElementById('popup-edit')
 const btnsClose = document.querySelectorAll('.popup__close-btn')
+const btnAddElement = document.querySelector('.profile__add-btn')
+const popupEdit = document.getElementById('popup-edit')
+const popupAdd = document.getElementById('popup-add')
+const formEdit = popupEdit.querySelector('.popup__form')
+const formAdd = popupAdd.querySelector('.popup__form')
 const profileNameText = document.querySelector('.profile__name')
 const profileDescriptionText = document.querySelector('.profile__description')
 const profileNameInputField = document.getElementById('profile-name')
 const profileDescriptionInputField = document.getElementById('profile-description')
-const formElement = popupEdit.querySelector('.popup__form')
-
-const btnAddElement = document.querySelector('.profile__add-btn')
-const popupAdd = document.getElementById('popup-add')
 const elementsGrid = document.querySelector('.elements-grid')
-const btnCreate = document.querySelector('.popup__create-btn')
 const cardNameInputField = document.getElementById('card-name')
 const cardLinkInputField = document.getElementById('card-link')
 const popupImage = document.getElementById('popup-image')
@@ -36,22 +35,23 @@ function handleEditFormSubmitBtn (evt) {
   closePopup(popupEdit)
 }
 
-// Event listeners
-btnEdit.addEventListener('click', () => {
-  openPopup(popupEdit)
-  profileNameInputField.value = profileNameText.textContent
-  profileDescriptionInputField.value = profileDescriptionText.textContent
-})
+// Add Form Handler - User cards rendered with info from input fields
+function handleAddFormSubmitBtn (evt) {
+  evt.preventDefault()
+  const userCard = {
+    name: cardNameInputField.value,
+    link: cardLinkInputField.value
+  }
+  addCardToContainer(userCard, elementsGrid)
+  closePopup(popupAdd)
+  document.getElementById('new-cards').reset()
+}
 
-btnAddElement.addEventListener('click', () => openPopup(popupAdd))
-formElement.addEventListener('submit', handleEditFormSubmitBtn)
-
-btnsClose.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const popup = btn.closest('.popup')
-    closePopup(popup)
-  })
-})
+// Adding rendered cards to ul container
+function addCardToContainer(card, container) {
+  const cardElement = renderCard(card)
+  container.prepend(cardElement)
+}
 
 //Render any card from JS to HTML with deletion, likes and image popup
 function renderCard(card) {
@@ -83,28 +83,29 @@ function renderCard(card) {
   return newElement
 }
 
-// Adding rendered cards to ul container
-function addCardToContainer(card, container) {
-  const cardElement = renderCard(card)
-  container.prepend(cardElement)
-}
+// Event listeners
+btnEdit.addEventListener('click', () => {
+  openPopup(popupEdit)
+  profileNameInputField.value = profileNameText.textContent
+  profileDescriptionInputField.value = profileDescriptionText.textContent
+})
+btnAddElement.addEventListener('click', () => openPopup(popupAdd))
+btnsClose.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const popup = btn.closest('.popup')
+    closePopup(popup)
+  })
+})
+formEdit.addEventListener('submit', handleEditFormSubmitBtn)
+formAdd.addEventListener('submit', handleAddFormSubmitBtn)
 
 // Render initial cards
 initialCards.forEach(card => {
   addCardToContainer(card, elementsGrid)
 })
 
-// User cards - every time create button clicked, new card rendered with info from input fields
-btnCreate.addEventListener('click', (e) => {
-  e.preventDefault()
-  const userCard = {
-      name: cardNameInputField.value,
-      link: cardLinkInputField.value
-    }
-  addCardToContainer(userCard, elementsGrid)
-  closePopup(popupAdd)
-  document.getElementById('new-cards').reset()
-})
+
+
 
 
 
