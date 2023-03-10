@@ -2,6 +2,7 @@
 const btnEdit = document.querySelector('.profile__edit-btn')
 const btnsClose = document.querySelectorAll('.popup__close-btn')
 const btnAddElement = document.querySelector('.profile__add-btn')
+const popups = document.querySelectorAll('.popup')
 const popupEdit = document.getElementById('popup-edit')
 const popupAdd = document.getElementById('popup-add')
 const formEdit = popupEdit.querySelector('.popup__form')
@@ -20,11 +21,13 @@ const popupImageCard = document.querySelector('.popup__image')
 // Close popups
 function closePopup(el) {
   el.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closePopupByEsc)
 }
 
 // Open Popups
 function openPopup(el) {
   el.classList.add('popup_opened')
+  document.addEventListener('keydown', closePopupByEsc)
 }
 
 // Edit Form Handler - saving new values from input
@@ -98,6 +101,18 @@ btnsClose.forEach(btn => {
 })
 formEdit.addEventListener('submit', handleEditFormSubmitBtn)
 formAdd.addEventListener('submit', handleAddFormSubmitBtn)
+
+// Popups closing by click on overlay
+popups.forEach(popup => {
+  popup.addEventListener('mousedown', (e) => {
+    e.target === popup ? closePopup(popup) : null
+  })
+})
+
+// Popups closing by Esc
+function closePopupByEsc(e) {
+    e.key === 'Escape' ? popups.forEach(popup => closePopup(popup)) : null
+}
 
 // Render initial cards
 initialCards.forEach(card => {
