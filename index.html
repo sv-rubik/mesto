@@ -10,6 +10,7 @@
   <!--  CSS Styles  -->
   <link rel="stylesheet" href="./pages/index.css">
   <script defer src="./scripts/cards.js"></script>
+  <script defer src="./scripts/validate.js"></script>
   <script defer src="./scripts/index.js"></script>
   <title>Место. Галерея фотографий мест в России.</title>
 </head>
@@ -50,17 +51,20 @@
       <form class="popup__form" id="profile" name="profile-form">
         <fieldset class="popup__fieldset">
           <label class="popup__label" for="profile-name">
-            <input class="popup__input" type="text" id="profile-name" placeholder="ФИО" required>
+            <input class="popup__input" type="text" id="profile-name" placeholder="ФИО"
+                   minlength="2" maxlength="40" required>
+            <span class="popup__error" id="profile-name-error"></span>
           </label>
           <label class="popup__label" for="profile-description">
-            <input class="popup__input" type="text" id="profile-description" placeholder="Профессия" required>
+            <input class="popup__input" type="text" id="profile-description" placeholder="Профессия"
+                   minlength="2" maxlength="200" required>
+            <span class="popup__error" id="profile-description-error"></span>
           </label>
         </fieldset>
         <button class="popup__save-btn" type="submit" aria-label="Сохранить изменения в профиле">Сохранить</button>
       </form>
     </div>
   </div>
-  <!--  Project work 5 -->
   <!--  Popup Add -->
   <div class="popup" id="popup-add">
     <div class="popup__container">
@@ -69,10 +73,13 @@
       <form class="popup__form" id="new-cards">
         <fieldset class="popup__fieldset">
           <label for="card-name" class="popup__label">
-            <input class="popup__input" type="text" id="card-name" placeholder="Название" required>
+            <input class="popup__input" type="text" id="card-name" placeholder="Название"
+                   minlength="1" maxlength="30" required>
+            <span class="popup__error" id="card-name-error"></span>
           </label>
           <label for="card-link" class="popup__label">
-            <input class="popup__input" type="text" id="card-link" placeholder="Ссылка на картинку" required>
+            <input class="popup__input" type="url" id="card-link" placeholder="Ссылка на картинку" required>
+            <span class="popup__error" id="card-link-error"></span>
           </label>
         </fieldset>
         <button class="popup__create-btn popup__save-btn" type="submit" aria-label="Создать новую фотографию">Создать</button>
