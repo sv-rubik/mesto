@@ -50,6 +50,15 @@ function addEventListeners(form) {
   })
 }
 
+// function to reset form errors for next opening
+function resetError(popup) {
+  const inputs = popup.querySelectorAll(settings.inputSelector)
+  const form = popup.querySelector(settings.formSelector)
+  inputs.forEach((input) => {
+    hideError(input, form)
+  })
+}
+
 // function to walk through the forms
 function enableValidation(settings) {
   const forms = document.querySelectorAll(settings.formSelector)
