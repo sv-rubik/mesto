@@ -31,7 +31,7 @@ function openPopup(el) {
 }
 
 // Edit Form Handler - saving new values from input
-function handleEditFormSubmitBtn (evt) {
+function handleEditFormSubmitBtn(evt) {
   evt.preventDefault()
   profileNameText.textContent = profileNameInputField.value
   profileDescriptionText.textContent = profileDescriptionInputField.value
@@ -39,7 +39,7 @@ function handleEditFormSubmitBtn (evt) {
 }
 
 // Add Form Handler - User cards rendered with info from input fields
-function handleAddFormSubmitBtn (evt) {
+function handleAddFormSubmitBtn(evt) {
   evt.preventDefault()
   const userCard = {
     name: cardNameInputField.value,
@@ -52,12 +52,12 @@ function handleAddFormSubmitBtn (evt) {
 
 // Adding rendered cards to ul container
 function addCardToContainer(card, container) {
-  const cardElement = renderCard(card)
+  const cardElement = createCard(card)
   container.prepend(cardElement)
 }
 
 //Render any card from JS to HTML with deletion, likes and image popup
-function renderCard(card) {
+function createCard(card) {
   const template = document.querySelector('#card-template').content
   const newElement = template.cloneNode(true)
   const image = newElement.querySelector('.element__image')
@@ -88,11 +88,19 @@ function renderCard(card) {
 
 // Event listeners
 btnEdit.addEventListener('click', () => {
-  openPopup(popupEdit)
   profileNameInputField.value = profileNameText.textContent
   profileDescriptionInputField.value = profileDescriptionText.textContent
+  resetError(popupEdit)
+  openPopup(popupEdit)
 })
-btnAddElement.addEventListener('click', () => openPopup(popupAdd))
+
+btnAddElement.addEventListener('click', () => {
+  cardLinkInputField.value = ''
+  cardNameInputField.value = ''
+  resetError(popupAdd)
+  openPopup(popupAdd)
+})
+
 btnsClose.forEach(btn => {
   btn.addEventListener('click', () => {
     const popup = btn.closest('.popup')
@@ -111,7 +119,10 @@ popups.forEach(popup => {
 
 // Popups closing by Esc
 function closePopupByEsc(e) {
-    e.key === 'Escape' ? popups.forEach(popup => closePopup(popup)) : null
+  if (document.querySelector('.popup_opened') && e.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened')
+    closePopup(popupOpened)
+  }
 }
 
 // Render initial cards
