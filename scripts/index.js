@@ -7,6 +7,8 @@ const popupEdit = document.getElementById('popup-edit')
 const popupAdd = document.getElementById('popup-add')
 const formEdit = popupEdit.querySelector('.popup__form')
 const formAdd = popupAdd.querySelector('.popup__form')
+const btnSaveProfile = formEdit.querySelector('.popup__save-btn')
+const btnSaveNewCard = formAdd.querySelector('.popup__save-btn')
 const profileNameText = document.querySelector('.profile__name')
 const profileDescriptionText = document.querySelector('.profile__description')
 const profileNameInputField = document.getElementById('profile-name')
@@ -17,6 +19,7 @@ const cardLinkInputField = document.getElementById('card-link')
 const popupImage = document.getElementById('popup-image')
 const popupImageCaption = document.querySelector('.popup__image-caption')
 const popupImageCard = document.querySelector('.popup__image')
+
 
 // Close popups
 function closePopup(el) {
@@ -91,6 +94,7 @@ btnEdit.addEventListener('click', () => {
   profileNameInputField.value = profileNameText.textContent
   profileDescriptionInputField.value = profileDescriptionText.textContent
   resetError(popupEdit)
+  switchSaveBtnState(btnSaveProfile, formEdit)
   openPopup(popupEdit)
 })
 
@@ -98,6 +102,7 @@ btnAddElement.addEventListener('click', () => {
   cardLinkInputField.value = ''
   cardNameInputField.value = ''
   resetError(popupAdd)
+  switchSaveBtnState(btnSaveNewCard, formAdd)
   openPopup(popupAdd)
 })
 
@@ -119,7 +124,7 @@ popups.forEach(popup => {
 
 // Popups closing by Esc
 function closePopupByEsc(e) {
-  if (document.querySelector('.popup_opened') && e.key === 'Escape') {
+  if (e.key === 'Escape') {
     const popupOpened = document.querySelector('.popup_opened')
     closePopup(popupOpened)
   }
