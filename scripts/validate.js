@@ -40,7 +40,7 @@ function switchSaveBtnState(button, form) {
 
 // define form for event listeners and call validation & btn toggle for each input
 function addEventListeners(form) {
-  const inputs = form.querySelectorAll(settings.inputSelector)
+  const inputs = Array.from(form.querySelectorAll(settings.inputSelector))
   const button = form.querySelector(settings.submitButtonSelector)
   inputs.forEach(input => {
     input.addEventListener('input', () => {
@@ -52,7 +52,7 @@ function addEventListeners(form) {
 
 // function to reset form errors for next opening
 function resetError(popup) {
-  const inputs = popup.querySelectorAll(settings.inputSelector)
+  const inputs = Array.from(popup.querySelectorAll(settings.inputSelector))
   const form = popup.querySelector(settings.formSelector)
   inputs.forEach((input) => {
     hideError(input, form)
@@ -61,7 +61,7 @@ function resetError(popup) {
 
 // function to walk through the forms
 function enableValidation(settings) {
-  const forms = document.querySelectorAll(settings.formSelector)
+  const forms = Array.from(document.querySelectorAll(settings.formSelector))
   forms.forEach((form) => {
     addEventListeners(form)
   })
