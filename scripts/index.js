@@ -1,3 +1,7 @@
+import { Card } from "./Card.js"
+import { FormValidator } from './FormValidator.js'
+import { initialCards, settings } from "./cards.js"
+
 // Variables
 const btnEdit = document.querySelector('.profile__edit-btn')
 const btnsClose = document.querySelectorAll('.popup__close-btn')
@@ -17,9 +21,17 @@ const elementsGrid = document.querySelector('.elements-grid')
 const cardNameInputField = document.getElementById('card-name')
 const cardLinkInputField = document.getElementById('card-link')
 const popupImage = document.getElementById('popup-image')
-const popupImageCaption = document.querySelector('.popup__image-caption')
-const popupImageCard = document.querySelector('.popup__image')
+export const popupImageCaption = document.querySelector('.popup__image-caption')
+export const popupImageCard = document.querySelector('.popup__image')
+/////////////////////////////////////
 
+const editFormValidation = new FormValidator(settings, formEdit)
+editFormValidation.enableValidation()
+
+const addFormValidation = new FormValidator(settings, formAdd)
+addFormValidation.enableValidation()
+
+///////////////////////////////////
 
 // Close popups
 function closePopup(el) {
@@ -28,7 +40,7 @@ function closePopup(el) {
 }
 
 // Open Popups
-function openPopup(el) {
+export function openPopup(el) {
   el.classList.add('popup_opened')
   document.addEventListener('keydown', closePopupByEsc)
 }
@@ -55,54 +67,24 @@ function handleAddFormSubmitBtn(evt) {
 
 // Adding rendered cards to ul container
 function addCardToContainer(card, container) {
-  const cardElement = createCard(card)
-  container.prepend(cardElement)
-}
-
-//Render any card from JS to HTML with deletion, likes and image popup
-function createCard(card) {
-  const template = document.querySelector('#card-template').content
-  const newElement = template.cloneNode(true)
-  const image = newElement.querySelector('.element__image')
-  const title = newElement.querySelector('.element__title')
-  const btnTrash = newElement.querySelector('.element__trash')
-  const btnLike = newElement.querySelector('.element__like')
-  image.src = card.link
-  image.alt = card.name
-  title.textContent = card.name
-  // Deletion of card
-  btnTrash.addEventListener('click', (e) => {
-    const element = e.target.closest('.element')
-    element.remove()
-  })
-  // Cards likes
-  btnLike.addEventListener('click', (e) => {
-    e.target.classList.toggle('element__like_active')
-  })
-  // Card image popup
-  image.addEventListener('click', () => {
-    openPopup(popupImage)
-    popupImageCard.src = card.link
-    popupImageCard.alt = card.name
-    popupImageCaption.textContent = card.name
-  })
-  return newElement
+  const cardElement = new Card(card, '#card-template')
+  container.prepend(cardElement.createCard())
 }
 
 // Event listeners
 btnEdit.addEventListener('click', () => {
   profileNameInputField.value = profileNameText.textContent
   profileDescriptionInputField.value = profileDescriptionText.textContent
-  resetError(popupEdit)
-  switchSaveBtnState(btnSaveProfile, formEdit)
+  editFormValidation.resetError()
+  editFormValidation.switchSaveBtnState(btnSaveProfile)
   openPopup(popupEdit)
 })
 
 btnAddElement.addEventListener('click', () => {
   cardLinkInputField.value = ''
   cardNameInputField.value = ''
-  resetError(popupAdd)
-  switchSaveBtnState(btnSaveNewCard, formAdd)
+  addFormValidation.resetError()
+  addFormValidation.switchSaveBtnState(btnSaveNewCard)
   openPopup(popupAdd)
 })
 
