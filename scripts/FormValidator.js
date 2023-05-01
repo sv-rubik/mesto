@@ -6,6 +6,8 @@ class FormValidator {
     this._inactiveButtonClass = settings.inactiveButtonClass
     this._inputErrorClass = settings.inputErrorClass
     this._errorClass = settings.errorClass
+    this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector))
+    this._button = this._form.querySelector(this._submitButtonSelector)
   }
 
   // visibility for error text & red line
@@ -39,14 +41,12 @@ class FormValidator {
     }
   }
 
-  // define inputs for event listeners and call validation & btn toggle for each input
+  // call validation & btn toggle for each input
   _addEventListeners() {
-    const inputs = Array.from(this._form.querySelectorAll(this._inputSelector))
-    const button = this._form.querySelector(this._submitButtonSelector)
-    inputs.forEach((input) => {
+    this._inputs.forEach((input) => {
       input.addEventListener("input", () => {
         this._isInputValid(input)
-        this.switchSaveBtnState(button)
+        this.switchSaveBtnState(this._button)
       })
     })
   }

@@ -20,7 +20,7 @@ const profileDescriptionInputField = document.getElementById('profile-descriptio
 const elementsGrid = document.querySelector('.elements-grid')
 const cardNameInputField = document.getElementById('card-name')
 const cardLinkInputField = document.getElementById('card-link')
-const popupImage = document.getElementById('popup-image')
+export const popupImage = document.getElementById('popup-image')
 export const popupImageCaption = document.querySelector('.popup__image-caption')
 export const popupImageCard = document.querySelector('.popup__image')
 /////////////////////////////////////
@@ -62,7 +62,7 @@ function handleAddFormSubmitBtn(evt) {
   }
   addCardToContainer(userCard, elementsGrid)
   closePopup(popupAdd)
-  document.getElementById('new-cards').reset()
+  formAdd.reset()
 }
 
 // Adding rendered cards to ul container
