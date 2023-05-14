@@ -1,8 +1,8 @@
 .header {
   min-height: 74px;
   display: flex;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin: 0;
   padding-top: 40px;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);

@@ -1,13 +1,13 @@
-import {Card} from "./Card.js"
-import {FormValidator} from './FormValidator.js'
-import Section from './Section.js'
-import UserInfo from './UserInfo.js'
-import PopupWithImage from './PopupWithImage.js'
-import PopupWithForm from './PopupWithForm.js'
-import {initialCards, settings} from "../utils/cards.js"
-import {btnEdit, btnAddElement, formEdit, formAdd, btnSaveProfile, btnSaveNewCard, profileNameText} from "../utils/constants.js"
-import {profileDescriptionText, profileNameInputField, profileDescriptionInputField} from "../utils/constants.js"
-
+import {Card} from "../scripts/Card.js"
+import {FormValidator} from '../scripts/FormValidator.js'
+import Section from '../scripts/Section.js'
+import UserInfo from '../scripts/UserInfo.js'
+import PopupWithImage from '../scripts/PopupWithImage.js'
+import PopupWithForm from '../scripts/PopupWithForm.js'
+import {initialCards, settings} from "../scripts/utils/cards.js"
+import {btnEdit, btnAddElement, formEdit, formAdd, btnSaveProfile, btnSaveNewCard, profileNameText} from "../scripts/utils/constants.js"
+import {profileDescriptionText, profileNameInputField, profileDescriptionInputField} from "../scripts/utils/constants.js"
+import './index.css'
 /////////////////////////////////// Create popup with for Edit-form
 const userInfo = new UserInfo(profileNameText, profileDescriptionText)
 
