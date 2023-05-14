@@ -31,13 +31,13 @@ class FormValidator {
   }
 
   // submit button state toggle
-  switchSaveBtnState(button) {
+  switchSaveBtnState() {
     if (this._form.checkValidity()) {
-      button.classList.remove(this._inactiveButtonClass)
-      button.disabled = false
+      this._button.classList.remove(this._inactiveButtonClass)
+      this._button.disabled = false
     } else {
-      button.classList.add(this._inactiveButtonClass)
-      button.disabled = true
+      this._button.classList.add(this._inactiveButtonClass)
+      this._button.disabled = true
     }
   }
 
