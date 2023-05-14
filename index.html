@@ -51,12 +51,14 @@
       <form class="popup__form" id="profile" name="profile-form">
         <fieldset class="popup__fieldset">
           <label class="popup__label" for="profile-name">
-            <input class="popup__input" type="text" id="profile-name" placeholder="ФИО" minlength="2" maxlength="40"
+            <input class="popup__input" type="text" id="profile-name" name="name" placeholder="ФИО"
+                   minlength="2" maxlength="40"
               required>
             <span class="popup__error" id="profile-name-error"></span>
           </label>
           <label class="popup__label" for="profile-description">
-            <input class="popup__input" type="text" id="profile-description" placeholder="Профессия" minlength="2"
+            <input class="popup__input" type="text" id="profile-description" name="description"
+                   placeholder="Профессия" minlength="2"
               maxlength="200" required>
             <span class="popup__error" id="profile-description-error"></span>
           </label>
@@ -73,12 +75,14 @@
       <form class="popup__form" id="new-cards">
         <fieldset class="popup__fieldset">
           <label for="card-name" class="popup__label">
-            <input class="popup__input" type="text" id="card-name" placeholder="Название" minlength="1" maxlength="30"
+            <input class="popup__input" type="text" id="card-name" name="title" placeholder="Название"
+                   minlength="1" maxlength="30"
               required>
             <span class="popup__error" id="card-name-error"></span>
           </label>
           <label for="card-link" class="popup__label">
-            <input class="popup__input" type="url" id="card-link" placeholder="Ссылка на картинку" required>
+            <input class="popup__input" type="url" id="card-link" name="link" placeholder="Ссылка на картинку"
+                   required>
             <span class="popup__error" id="card-link-error"></span>
           </label>
         </fieldset>

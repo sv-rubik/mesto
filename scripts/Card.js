@@ -1,10 +1,9 @@
-import { openPopup, popupImageCard, popupImageCaption, popupImage } from './index.js'
-
 class Card {
-  constructor(cardData, templateSelector) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._title = cardData.name
     this._link = cardData.link
     this._templateSelector = templateSelector
+    this._handleCardClick = handleCardClick
     this._element = this._getTemplate()
     this._btnTrash = this._element.querySelector('.element__trash')
     this._btnLike = this._element.querySelector('.element__like')
@@ -12,11 +11,10 @@ class Card {
   }
 
   _getTemplate() {
-    const templateHTML = document
+    return document
       .querySelector(this._templateSelector)
       .content
       .cloneNode(true)
-    return templateHTML
   }
 
   _likeCard = (e) => {
@@ -28,17 +26,10 @@ class Card {
     element.remove()
   }
 
-  _openPopupOnClick() {
-    openPopup(popupImage)
-    popupImageCard.src = this._link
-    popupImageCard.alt = this._title
-    popupImageCaption.textContent = this._title
-  }
-
   _setEventListeners() {
     this._btnLike.addEventListener('click', (e) => this._likeCard(e))
     this._btnTrash.addEventListener('click', (e) => this._deleteCard(e))
-    this._image.addEventListener('click', () => this._openPopupOnClick())
+    this._image.addEventListener('click', () => this._handleCardClick(this._title, this._link))
   }
 
 // public method for card creation
