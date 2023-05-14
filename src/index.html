@@ -8,9 +8,6 @@
   <meta name="description" content="Галерея фотографий мест в России">
   <meta name="keywords" content="путешествия, html, css, grid, js">
   <meta name="author" content="Светлана Рубинштейн">
-  <!--  CSS Styles  -->
-  <link rel="stylesheet" href="./pages/index.css">
-  <script defer src="./scripts/index.js" type="module"></script>
   <title>Место. Галерея фотографий мест в России.</title>
 </head>
 
@@ -18,14 +15,14 @@
   <!--  Header  -->
   <header class="header">
     <a class="header__link" href="#">
-      <img class="header__logo" src="./images/logo.svg" alt="логотип проекта 'Место'">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="логотип проекта 'Место'">
     </a>
   </header>
   <!--  Main  -->
   <main class="main">
     <!--  Section profile  -->
     <section class="profile" aria-label="Профиль пользователя">
-      <img class="profile__avatar-image" src="./images/kusto.jpg" alt="Аватар пользователя">
+      <img class="profile__avatar-image" src="<%=require('./images/kusto.jpg')%>" alt="Аватар пользователя">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button class="profile__edit-btn" type="button" aria-label="Редактировать профиль"></button>
