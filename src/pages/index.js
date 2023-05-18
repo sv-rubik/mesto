@@ -4,12 +4,15 @@ import Section from '../components/Section.js'
 import UserInfo from '../components/UserInfo.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
-import {initialCards, settings} from "../components/utils/cards.js"
-import {btnEdit, btnAddElement, formEdit, formAdd, btnSaveProfile, btnSaveNewCard, profileNameText} from "../components/utils/constants.js"
-import {profileDescriptionText, profileNameInputField, profileDescriptionInputField} from "../components/utils/constants.js"
+import {initialCards, settings} from "../utils/cards.js"
+import {btnEdit, btnAddElement, formEdit, formAdd, btnSaveProfile, btnSaveNewCard, profileNameText} from "../utils/constants.js"
+import {profileDescriptionText, profileNameInputField, profileDescriptionInputField} from "../utils/constants.js"
 import './index.css'
 /////////////////////////////////// Create popup with for Edit-form
-const userInfo = new UserInfo(profileNameText, profileDescriptionText)
+const userInfo = new UserInfo({
+  profileNameSelector: '.profile__name',
+  profileDescriptionSelector: '.profile__description',
+})
 
 const popupWithEditForm = new PopupWithForm('#popup-edit', {
   handleFormSubmit: (profileInputsData) => {
@@ -28,7 +31,7 @@ btnEdit.addEventListener('click', () => {
   profileNameInputField.value = profileName
   profileDescriptionInputField.value = profileDescription
   editFormValidation.resetError()
-  editFormValidation.switchSaveBtnState(btnSaveProfile)
+  editFormValidation.switchSaveBtnState()
 })
 
 ///////////////////////////////////////Create popup to add card
@@ -46,7 +49,7 @@ popupWithAddForm.setEventListeners();
 btnAddElement.addEventListener('click', () => {
   popupWithAddForm.open()
   addFormValidation.resetError()
-  addFormValidation.switchSaveBtnState(btnSaveNewCard)
+  addFormValidation.switchSaveBtnState()
 })
 
 ////////////////////////////////////// Create popup with Image instance and add caption and link from card
@@ -57,16 +60,16 @@ const handleCardClick = function (title, link) {
 }
 
 // Render each separate card with Card class
-function renderCard(cardsArray) {
-  const cardElement = new Card(cardsArray, '#card-template', handleCardClick)
+function renderCard(item) {
+  const cardElement = new Card(item, '#card-template', handleCardClick)
   return cardElement.createCard()
 }
 
 // Render initial cards with Section class instance
 const renderInitialCards = new Section({
   initialCards: initialCards,
-  renderer: (cardsArray) => {
-    renderInitialCards.addItem(renderCard(cardsArray))
+  renderer: (item) => {
+    renderInitialCards.addItem(renderCard(item))
   }
 }, '.elements-grid')
 renderInitialCards.renderItems()

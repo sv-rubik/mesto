@@ -53,8 +53,7 @@ class FormValidator {
 
   // function to reset form errors for next opening
   resetError() {
-    const inputs = Array.from(this._form.querySelectorAll(this._inputSelector))
-    inputs.forEach((input) => {
+    this._inputs.forEach((input) => {
       this._hideError(input)
     })
   }
