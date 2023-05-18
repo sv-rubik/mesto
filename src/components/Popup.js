@@ -23,7 +23,7 @@ class Popup {
     }
   }
 
-// Popups closing by click on overlay TODO
+// Popups closing by click on overlay
   setEventListeners() {
     this._popup.addEventListener('mousedown', (e) => {
       if (e.target.classList.contains('popup_opened') || e.target.classList.contains('popup__close-btn')) {
