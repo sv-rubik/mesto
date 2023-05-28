@@ -30,13 +30,13 @@ const popupWithEditForm = new PopupWithForm('#popup-edit', {
         userInfo.setUserInfo({
           profileName: res.name,
           profileDescription: res.about})
+          popupWithEditForm.close()
       })
       .catch((err) => {
         console.log(`There is an error in editing profile: ${err}`)
       })
       .finally(() => {
         popupWithEditForm.closeSavingNotification()
-        popupWithEditForm.close()
       })
   }
 })
@@ -47,8 +47,8 @@ btnEdit.addEventListener('click', () => {
   const {profileName, profileDescription} = userInfo.getUserInfo()
   profileNameInputField.value = profileName
   profileDescriptionInputField.value = profileDescription
-  editFormValidation.resetError()
-  editFormValidation.switchSaveBtnState()
+  formEditValidation.resetError()
+  formEditValidation.switchSaveBtnState()
 })
 
 /////////////////////////////////////// Create popup to add card
@@ -71,8 +71,8 @@ popupWithAddForm.setEventListeners()
 
 btnAddElement.addEventListener('click', () => {
   popupWithAddForm.open()
-  addFormValidation.resetError()
-  addFormValidation.switchSaveBtnState()
+  formAddValidation.resetError()
+  formAddValidation.switchSaveBtnState()
 })
 
 ////////////////////////////////////// Create Image popup and add caption and link from card
@@ -126,8 +126,8 @@ popupWithAvatar.setEventListeners()
 
 btnEditAvatar.addEventListener('click', () => {
   popupWithAvatar.open()
-  addFormValidation.resetError()
-  addFormValidation.switchSaveBtnState()
+  formAddValidation.resetError()
+  formAddValidation.switchSaveBtnState()
 })
 
 //////////////////////////////////// Create popup with deletion confirmation QUESTION
@@ -152,29 +152,28 @@ const renderInitialCards = new Section({
   }
 }, '.elements-grid')
 
-//Get initial cards from server & render them with Section instance
-api.getInitialCards().then((resCardsData) => {
-  renderInitialCards.renderItems(resCardsData)
-})
-  .catch((err) => { console.log(`Error: ${err}`) })
-
-//Get profile data & avatar from server
-api.getUserData().then((resUserData) => {
-  userId = resUserData._id
-  userInfo.setUserInfo({
-    profileName: resUserData.name,
-    profileDescription: resUserData.about
+//Get initial cards and profile data simultaneously using Promise.all
+Promise.all([api.getInitialCards(), api.getUserData()])
+  .then(([resCardsData, resUserData]) => {
+    // Set user info and avatar
+    userId = resUserData._id
+    userInfo.setUserInfo({
+      profileName: resUserData.name,
+      profileDescription: resUserData.about
+    })
+    userInfo.setUserAvatar(resUserData.avatar)
+    renderInitialCards.renderItems(resCardsData)
   })
-  userInfo.setUserAvatar(resUserData.avatar)
-})
-  .catch((err) => { console.log(`Error: ${err}`) })
+  .catch((err) => {
+    console.log(`Error: ${err}`)
+  })
 
 ///////////////////////////////////// Validation
-const editFormValidation = new FormValidator(settings, formEdit)
-editFormValidation.enableValidation()
+const formEditValidation = new FormValidator(settings, formEdit)
+formEditValidation.enableValidation()
 
-const addFormValidation = new FormValidator(settings, formAdd)
-addFormValidation.enableValidation()
+const formAddValidation = new FormValidator(settings, formAdd)
+formAddValidation.enableValidation()
 
-const avatarFormValidation = new FormValidator(settings, formAvatar)
-avatarFormValidation.enableValidation()
+const formAvatarValidation = new FormValidator(settings, formAvatar)
+formAvatarValidation.enableValidation()

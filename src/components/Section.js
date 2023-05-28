@@ -13,6 +13,6 @@ export default class Section {
 
   // to get DOM el-t and add it to container
   addItem(element) {
-    this._templateContainer.prepend(element)
+    this._templateContainer.insertBefore(element, this._templateContainer.firstChild)
   }
 }
