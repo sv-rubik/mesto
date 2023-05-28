@@ -5,6 +5,7 @@
   font-weight: 900;
   margin: 0;
   align-self: flex-start;
+  padding-bottom: 31px;
 }
 
 @media screen and (max-width: 979px) {
