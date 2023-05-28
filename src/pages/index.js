@@ -162,7 +162,7 @@ Promise.all([api.getInitialCards(), api.getUserData()])
       profileDescription: resUserData.about
     })
     userInfo.setUserAvatar(resUserData.avatar)
-    renderInitialCards.renderItems(resCardsData)
+    renderInitialCards.renderItems(resCardsData.reverse())
   })
   .catch((err) => {
     console.log(`Error: ${err}`)
