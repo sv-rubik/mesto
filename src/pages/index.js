@@ -21,7 +21,7 @@ const userInfo = new UserInfo({
   profileDescriptionSelector: '.profile__description',
 })
 
-/////////////////////////////////// Create popup with for Edit-form
+/////////////////////////////////// Create popup for Edit-form
 const popupWithEditForm = new PopupWithForm('#popup-edit', {
   handleFormSubmit: (profileInputsData) => {
     popupWithEditForm.showSavingNotification()
@@ -54,16 +54,18 @@ btnEdit.addEventListener('click', () => {
 /////////////////////////////////////// Create popup to add card
 const popupWithAddForm = new PopupWithForm('#popup-add', {
   handleFormSubmit: (addCardInputsData) => {
+    popupWithAddForm.showSavingNotification()
     api.addNewCard({
       name: addCardInputsData.title,
       link: addCardInputsData.link
     })
       .then((card) => {
-        renderInitialCards.addItem(renderCard(card))})
+        renderInitialCards.addItem(renderCard(card))
+        popupWithAddForm.close()
+      })
       .catch((err) => {console.log(`There is an error in posting card: ${err}`)})
       .finally(() => {
-        popupWithAddForm.showSavingNotification()
-        popupWithAddForm.close()
+        popupWithEditForm.closeSavingNotification()
       })
   }
 })
