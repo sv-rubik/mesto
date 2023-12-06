@@ -15,3 +15,8 @@
 
 #### Ссылка на проект
 * [Сервис "Mesto" на GitHub Pages](https://sv-rubik.github.io/mesto/)
+  
+#### Инструкция по установке:
+1. Клонировать репозиторий git clone https://github.com/sv-rubik/mesto.git
+2. Установить зависимости npm i
+3. Запустить проект локально npm run dev
